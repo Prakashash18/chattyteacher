@@ -1,1 +1,2 @@
-web: streamlit run testLen.py
+web: sh setup.sh && streamlit run app.py
+
