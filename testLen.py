@@ -274,7 +274,7 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
 
                         Keep your answer to the point. Keep explanations strictly short and in point form !
 
-                        Only explain more if user asks.
+                        Only explain more if user asks. If user asks more than 3 times, ask user to try the Show Videos button to see some videos and learn.
                     """
                     prompt = ChatPromptTemplate.from_template(template)
                     chain = prompt | llm | StrOutputParser()
