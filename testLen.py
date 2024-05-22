@@ -274,7 +274,7 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
 
                         Keep your answer to the point. Keep explanations strictly short and in point form !
 
-                        Only explain more if user asks. If user asks more than 3 times, ask user to try the Show Videos button to see some videos and learn.
+                        Only explain more if user asks. If user doesn't seem to understand, ask user to try the Show Videos button to see some videos and learn.
                     """
                     prompt = ChatPromptTemplate.from_template(template)
                     chain = prompt | llm | StrOutputParser()
@@ -300,7 +300,7 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
 
 
                     else:
-                        fullres = "Hi ! I can only respond up to 5 messages for now. You can also watch the videos to learn more."
+                        fullres = "Hi ! I can only respond up to 5 messages for now. You can also click on the 'Show Video' button to watch some videos."
 
 
                     st.session_state.messages.append(AIMessage(fullres))
