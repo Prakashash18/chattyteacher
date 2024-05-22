@@ -378,9 +378,11 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
 
                 if user_answer == correct_answer:
                     st.success("Correct!")
+                    st.image('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2x4dDA5cWJtaXI4aTI0em1hMjZhY2I2dXRmZDN6YWVncGJjejZsciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XmINvJ8qspXHcFGM1f/giphy.gif')
 
                 else:
                     st.error(f"Incorrect. The answer is {correct_answer}")
+                    st.image('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjNjbnY3cjB2ejl0bmZmZWs5ZjBlcXN4Zngyc3Z1ZmVneHlmdjl1NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CoND5j6Bn1QZUgm1xX/giphy.gif')
 
                 # Next button to move on (only enabled after answering)
                 b1, b2, b3 =  st.columns([1,2,2])
