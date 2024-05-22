@@ -65,17 +65,23 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
     # Display app content for larger screens
     import pandas as pd
     import time
-    import ollama
-    from langchain_community.llms import Ollama
+    # import ollama
+    # from langchain_community.llms import Ollama
+    from langchain_community.chat_models import ChatOpenAI
     from langchain_community.tools import YouTubeSearchTool
-    from langchain_community.chat_models import ChatOllama
+    # from langchain_community.chat_models import ChatOllama
     from langchain_core.output_parsers import StrOutputParser
     from langchain_core.prompts import ChatPromptTemplate
     from langchain_core.messages import HumanMessage, AIMessage
 
+    # @st.cache_resource
+    # def load_model():
+    #     llm = ChatOllama(model="llama3")
+    #     return llm
+
     @st.cache_resource
     def load_model():
-        llm = ChatOllama(model="llama3")
+        llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
         return llm
 
     llm = load_model()
@@ -267,6 +273,8 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
                         User question: {user_question}
 
                         Keep your answer to the point. Keep explanations strictly short and in point form !
+
+                        Only explain more if user asks.
                     """
                     prompt = ChatPromptTemplate.from_template(template)
                     chain = prompt | llm | StrOutputParser()
@@ -288,14 +296,14 @@ if screen_width is not None and screen_width >= MIN_SCREEN_WIDTH:
                         with st.chat_message("AIMessage"):
                             # for res in response:
                             #     print(f"Received partial response: {res}")
-                            fullres= st.write_stream(response)
+                            fullres = st.write_stream(response)
 
 
                     else:
-                        response = "Hi ! I can only respond up to 5 messages for now. You can also watch the videos to learn more."
+                        fullres = "Hi ! I can only respond up to 5 messages for now. You can also watch the videos to learn more."
 
 
-                st.session_state.messages.append(AIMessage(fullres))
+                    st.session_state.messages.append(AIMessage(fullres))
                     
                 st.session_state.ai_message_bool = False
                 st.rerun()

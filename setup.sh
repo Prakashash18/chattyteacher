@@ -12,4 +12,3 @@ enableCORS=false\n\
 port = $PORT\n\
 " > ~/.streamlit/config.toml
 
-curl -fsSL https://ollama.com/install.sh | sh
